@@ -37,8 +37,7 @@ title> ${param.title} | Academia
 	</header>
 	<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-primary">
 		<!-- logo -->
-		<a class="navbar-brand" href="index.html"> <i
-			class="fas fa-shopping-cart"></i>
+		<a class="navbar-brand" href="index.jsp"> <i class="fas fa-book-reader"></i>
 		</a>
 
 		<!-- icono para desplegar menu en moviles -->
@@ -59,16 +58,11 @@ title> ${param.title} | Academia
 
 				<c:if test="${not empty usuario_login }">
 					<li class="nav-item"><a
-						class="nav-link ${ ( 'productos' eq param.pagina ) ? 'active' : '' } "
-						href="formulario-producto.jsp"> crear Productos</a></li>
+						class="nav-link ${ ( 'cursos' eq param.pagina ) ? 'active' : '' } "
+						href="cursos.jsp"> crear cursos</a></li>
 					<li class="nav-item"><a
-						class="nav-link ${ ( 'productos' eq param.pagina ) ? 'active' : '' } "
-						href="productos">lista Productos</a></li>
-
-					<li class="nav-item"><a
-						class="nav-link ${ ( 'usuario' eq param.pagina ) ? 'active' : '' } "
-						href="Usuario">Usuarios</a></li>
-
+						class="nav-link ${ ( 'profesor' eq param.pagina ) ? 'active' : '' } "
+						href="curso">lista cursos</a></li>
 
 
 				</c:if>
