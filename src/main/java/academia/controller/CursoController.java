@@ -36,11 +36,16 @@ public class CursoController extends HttpServlet {
 		ArrayList<Curso> cursos = new ArrayList<Curso>();
 		CursoDAOImpl dao = CursoDAOImpl.getInstance();
 		
+		
 		cursos=dao.listar();
-
 		request.setAttribute("cursos", cursos);
 		request.getRequestDispatcher("cursos.jsp").forward(request, response);
+	
+		
 	}
+	
+	
+	
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {

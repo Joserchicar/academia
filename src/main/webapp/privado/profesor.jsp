@@ -57,7 +57,7 @@
 					<td>${c.profesor.nombre},${c.profesor.apellidos}</td>
 					<td><a href="curso?id=${c.id}" class="mr-4"> <i
 							class="far fa-edit fa-2x" title="Editar curso"></i></a> <a
-						href="curso?id=${c.id}" onclick="confirmar('${c.nombre}')"><i
+						href="CursoDel?id=${c.id}" onclick="confirmar('${c.nombre}')"><i
 							class="fas fa-trash fa-2x" title="Eliminar curso"></i></a></td>
 				</tr>
 			</c:forEach>
