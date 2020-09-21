@@ -18,7 +18,7 @@ ${cursos};
  
  <a href= "login.jsp" > ir al login</a>
  
- 	<h1>Listado Productos</h1>
+ 	<h1>Listado Cursos</h1>
 	<p>${mensaje}</p>
 
 
