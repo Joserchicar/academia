@@ -48,6 +48,12 @@ public class loginController extends HttpServlet {
 		
 		
 		if ( usuario == null ) {
+			ArrayList<Curso>cursos=new ArrayList<Curso>();
+			CursoDAOImpl cursodao = CursoDAOImpl.getInstance();
+			
+				cursos=cursodao.listar();
+				
+				
 			request.setAttribute("mensaje", "Credenciales incorrectas, prueba de nuevo por favor");
 			request.getRequestDispatcher("login.jsp").forward(request, response);
 			
@@ -73,7 +79,7 @@ public class loginController extends HttpServlet {
 			request.setAttribute("cursos",cursos);	
 			request.getSession().setAttribute("usuario_sesion", usuario);
 			request.getRequestDispatcher("privado/profesor.jsp").forward(request, response);
-			
+			//response.sendRedirect(request.getContextPath()+"/privado/profesor");
 			
 		}else {
 			

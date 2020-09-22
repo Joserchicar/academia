@@ -24,7 +24,7 @@
 	<h1>Listado Cursos</h1>
 	<p>${mensaje}</p>
 
-	<p>${cursos}</p>
+	
 
 </div>
 
@@ -55,9 +55,9 @@
 					<td>${c.identificador};</td>
 					<td>${c.horas}</td>
 					<td>${c.profesor.nombre},${c.profesor.apellidos}</td>
-					<td><a href="curso?id=${c.id}" class="mr-4"> <i
+					<td><a href="cursos?id=${c.id}" class="mr-4"> <i
 							class="far fa-edit fa-2x" title="Editar curso"></i></a> <a
-						href="CursoDel?id=${c.id}" onclick="confirmar('${c.nombre}')"><i
+						href="cursoDel?id=${c.id}" onclick="confirmar('${c.nombre}')"><i
 							class="fas fa-trash fa-2x" title="Eliminar curso"></i></a></td>
 				</tr>
 			</c:forEach>

@@ -39,7 +39,7 @@ public class CursoController extends HttpServlet {
 		
 		cursos=dao.listar();
 		request.setAttribute("cursos", cursos);
-		request.getRequestDispatcher("cursos.jsp").forward(request, response);
+		request.getRequestDispatcher("/privado/profesor.jsp").forward(request, response);
 	
 		
 	}
@@ -56,27 +56,29 @@ public class CursoController extends HttpServlet {
 		try {
 
 			// recoger los valores del formulario
-			String idParametro = request.getParameter("id");
+			//String idParametro = request.getParameter("id");
 			String nombre = request.getParameter("nombre");
 			String identificador = request.getParameter("identificador");
 			String horasParametro = request.getParameter("horas");
-			String profesorId = request.getParameter("idProfesor");
+			//String profesorId = request.getParameter("idProfesor");
 
-			int id = Integer.parseInt(idParametro);
+			//int id = Integer.parseInt(idParametro);
 			int horas = Integer.parseInt(horasParametro);
-			int idProfesor = Integer.parseInt(profesorId);
+			//int idProfesor = Integer.parseInt(profesorId);
 
 			// DAO
 			CursoDAOImpl dao = CursoDAOImpl.getInstance();
 
 			// parametros
 
-			curso.setId(id);
+			//curso.setId(id);
 			curso.setNombre(nombre);
 			curso.setIdentificador(identificador);
 			curso.setHoras(horas);
-			Usuario profesor = new Usuario();
-			profesor.setId(idProfesor);
+			
+			Usuario profesor =  (Usuario)request.getSession().getAttribute("usuario_sesion"); 
+			//profesor.setId(idProfesor);
+			
 			curso.setProfesor(profesor);
 
 			// Set<ConstraintViolation<Curso>> violations = validator.validate(curso);
@@ -85,36 +87,13 @@ public class CursoController extends HttpServlet {
 
 			// vuelve al inicio y vuelve para listar los libros (redirecciona)
 
-			if (id == 0) {
+			
 
-				dao.insert(curso, idProfesor);
+				dao.insert(curso, profesor.getId());
 
-				request.getSession().setAttribute("mensaje", "Cursoregistrado con exito");
-				request.setAttribute("curso", curso);
-			} // else {
-				// dao.update(curso);
-
-			// ir a la vista del registro de libros
-			request.setAttribute("curso", curso);
-
-			// request.setAttribute("mensaje", "El libro ya existe");
-
-			// } // if
-
-			// alerta = new Alerta("success", "Libro registrado. Pendiente de su
-			// validacion");
-			/*
-			 * } else { // Si hay errores de validacion
-			 * 
-			 * String errores = ""; for (ConstraintViolation<Curso> v : violations) {
-			 * 
-			 * errores += "<p><b>" + v.getPropertyPath() + "</b>:" + v.getMessage() +
-			 * "</p>";
-			 * 
-			 * } alerta = new Alerta("danger", errores);
-			 * 
-			 * }
-			 */
+				//request.getSession().setAttribute("mensaje", "Cursoregistrado con exito");
+				//request.setAttribute("curso", curso);
+			  // if
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -124,6 +103,7 @@ public class CursoController extends HttpServlet {
 
 		} catch (Exception e) {
 			// LOG.error(e);
+			e.printStackTrace();
 			String mensaje = "Lo sentimos pero hemos tenido un ERROR inxesperado ";
 
 		} finally {
@@ -136,8 +116,11 @@ public class CursoController extends HttpServlet {
 
 			// ir a la nueva vista o jsp
 
-			request.getRequestDispatcher("/cursos.jsp").forward(request, response);
+			request.getRequestDispatcher("/privado/profesor.jsp").forward(request, response);
+			
+			// response.sendRedirect("cursos");
 		} // trycatch
+		
 
 	}
 

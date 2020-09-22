@@ -7,11 +7,11 @@ import javax.naming.NamingException;
 import academia.modelo.pojo.Curso;
 
 public interface CursoDAO {
-	
+	/**
+	 * Listado de cursos sin datos de Alumnos matriculados
+	 * @return ArrayList&lt;Curso&gt;
+	 */
 	ArrayList<Curso> listar();
-
-	
-	
 	
 	/**
 	 * Obtiene todos los productos de un usuario, estos pueden estar validados o no
@@ -32,7 +32,10 @@ public interface CursoDAO {
 	 * @throws Exception 
 	 * @throws Throwable 
 	 */
-	Curso delete(int idCurso, int idUsuario) throws Exception, Throwable ;
+	Curso delete(int idCurso) throws Exception, Throwable ;
+	
+	
+	
 	
 	
 	Curso insert(Curso curso,int idUsuario)throws Exception;

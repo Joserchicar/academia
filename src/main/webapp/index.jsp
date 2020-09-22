@@ -10,7 +10,8 @@
 
 <%
 	// segun carga la pagina principal, redireccionamos a un controlador
-	response.sendRedirect( request.getContextPath() + "/login.jsp");
+	response.sendRedirect( request.getContextPath() + "/login");
+
 %>
 
 

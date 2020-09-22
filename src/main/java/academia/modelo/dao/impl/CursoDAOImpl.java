@@ -42,7 +42,9 @@ public class CursoDAOImpl implements CursoDAO {
 
 	private final static String SQL_INSERT = "INSERT INTO cursos (curso,identificador,horas,idProfesor ) VALUES ( ? ,?,?,?) ;";
 
-	private final static String SQL_DELETE_BY_USER = "DELETE FROM cursos WHERE id = ? AND idProfesor= ?; ";
+	private final static String SQL_DELETE = "DELETE  FROM cursos WHERE id = ?; ";
+
+	private final static String SQL_DELETE_BY_USER = "DELETE  FROM cursos WHERE id = ? AND idProfesor= ?; ";
 
 	@Override
 	public ArrayList<Curso> listar() {
@@ -55,7 +57,7 @@ public class CursoDAOImpl implements CursoDAO {
 
 			while (rs.next()) {
 
-				Curso c = new Curso();
+				/*Curso c = new Curso();
 				c.setId(rs.getInt("curso_id"));
 				c.setNombre(rs.getString("curso_nombre"));
 				c.setIdentificador(rs.getString("identificador"));
@@ -67,9 +69,9 @@ public class CursoDAOImpl implements CursoDAO {
 				p.setApellidos(rs.getString("profesor_apellidos"));
 				p.setRol(rs.getInt("rol"));
 
-				c.setProfesor(p);
+				c.setProfesor(p);*/
 
-				cursos.add(c);
+				cursos.add(mapper(rs));
 
 			}
 
@@ -100,7 +102,7 @@ public class CursoDAOImpl implements CursoDAO {
 
 				while (rs.next()) {
 
-					Curso c = new Curso();
+					/*Curso c = new Curso();
 					c.setId(rs.getInt("curso_id"));
 					c.setNombre(rs.getString("curso_nombre"));
 					c.setIdentificador(rs.getString("identificador"));
@@ -112,9 +114,9 @@ public class CursoDAOImpl implements CursoDAO {
 					p.setApellidos(rs.getString("profesor_apellidos"));
 					p.setRol(rs.getInt("rol"));
 
-					c.setProfesor(p);
+					c.setProfesor(p);*/
 
-					cursos.add(c);
+					cursos.add(mapper(rs));
 
 				}
 
@@ -132,21 +134,20 @@ public class CursoDAOImpl implements CursoDAO {
 
 	}
 
-	private Curso getById(int idCurso, int idUsuario) throws SQLException, Throwable, NamingException {
+	private Curso getById(int idCurso) throws SQLException, Throwable, NamingException {
 		Curso curso = new Curso();
-		
+
 		try (Connection conexion = ConnectionManager.getConnection();
 				PreparedStatement pst = conexion.prepareStatement(SQL_GET_BY_ID);
 
 		) {
 
 			pst.setInt(1, idCurso);
-			pst.setInt(2, idUsuario);
-			//LOG.debug(pst);
+			// pst.setInt(2, idUsuario);
+			// LOG.debug(pst);
 
 			ResultSet rs = pst.executeQuery();
 
-			
 			while (rs.next()) {
 
 				Curso c = new Curso();
@@ -163,49 +164,36 @@ public class CursoDAOImpl implements CursoDAO {
 
 				c.setProfesor(p);
 				curso = new Curso();
-			
-				} 
 
 			}
+
+		}
 		return curso;
-	}	
-		
-	
-	
-	
-	@Override
-	public Curso delete(int idCurso, int idUsuario) throws SQLException, NamingException, Throwable {
-		
-		
-		Curso curso = getById(idCurso, idUsuario);
-		
+	}
+
+	public Curso delete(int idCurso) throws SQLException, NamingException, Throwable {
+
+		// conseguir el curso antes de Eliminar
+		Curso curso = getById(idCurso);
+
 		try (Connection conexion = ConnectionManager.getConnection();
-				PreparedStatement pst = conexion.prepareStatement(SQL_DELETE_BY_USER);
+				PreparedStatement pst = conexion.prepareStatement(SQL_DELETE);
 
 		) {
 
 			pst.setInt(1, idCurso);
-			pst.setInt(2, idUsuario);
 			// LOG.debug(pst);
 
-			pst.executeUpdate();
+			int affectedRows = pst.executeUpdate();
+
+			if (affectedRows != 1) {
+				throw new Exception("No se puedo eliminar el Curso id = " + idCurso);
+			}
 
 		} // try
- catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (NamingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		return curso;
 
 	}
-
-	
 
 	@Override
 	public Curso insert(Curso curso, int idUsuario) throws Exception {
@@ -216,12 +204,11 @@ public class CursoDAOImpl implements CursoDAO {
 
 		try (Connection conexion = ConnectionManager.getConnection();
 				PreparedStatement pst = conexion.prepareStatement(SQL_INSERT,
-
 						PreparedStatement.RETURN_GENERATED_KEYS);) {
-			pst.setInt(1, curso.getId());
+			// pst.setInt(1, curso.getId());
 			pst.setString(1, curso.getNombre());
-			pst.setInt(2, curso.getHoras());
-			pst.setString(3, curso.getIdentificador());
+			pst.setString(2, curso.getIdentificador());
+			pst.setInt(3, curso.getHoras());
 			pst.setInt(4, curso.getProfesor().getId());
 
 			// LOG.debug(pst);
@@ -251,5 +238,25 @@ public class CursoDAOImpl implements CursoDAO {
 		}
 
 		return curso;
+	}
+
+	private Curso mapper(ResultSet rs) throws SQLException {
+
+		Curso c = new Curso();
+		c.setId(rs.getInt("curso_id"));
+		c.setNombre(rs.getString("curso_nombre"));
+		c.setIdentificador(rs.getString("identificador"));
+		c.setHoras(rs.getInt("horas"));
+		c.setNumAlumnos(rs.getInt("num_alumnos"));
+
+		Usuario p = new Usuario();
+		p.setId(rs.getInt("profesor_id"));
+		p.setNombre(rs.getString("profesor_nombre"));
+		p.setApellidos(rs.getString("profesor_apellidos"));
+		p.setRol(rs.getInt("rol"));
+
+		c.setProfesor(p);
+
+		return c;
 	}
 }
