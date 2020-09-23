@@ -8,25 +8,93 @@
 	<jsp:param name="title" value="alumno" />
 </jsp:include>
 
-<h1> ${param.mensaje}</h1>
 
 
 
+<h1> Hola, Alumno!!! </h1>
+<h4>${usuario_sesion}</h4>
 
 <h1> mostrar cursos del alumno logeado</h1>
+
+<div>
+	<table class="tabla table table-striped">
+		<thead>
+			<tr>
+				<td>Id</td>
+				<td>Nombre</td>
+				<td>Identificador</td>
+				<td>Horas</td>
+				<td>Profesor</td>
+				<td>Operaciones</td>
+			</tr>
+		</thead>
+		<tbody>
+			<c:forEach items="${cursos}" var="c">
+				<tr>
+					<td>${c.id}</td>
+					<td>${c.nombre}</td>
+					<td>${c.identificador};</td>
+					<td>${c.horas}</td>
+					<td>${c.profesor.nombre},${c.profesor.apellidos}</td>
+					<td><a href="cursos?id=${c.id}" class="mr-4"> <i
+							class="far fa-edit fa-2x" title="Editar curso"></i></a> <a
+						href="cursoDel?id=${c.id}" onclick="confirmar('${c.nombre}')"><i
+							class="fas fa-trash fa-2x" title="Eliminar curso"></i></a></td>
+				</tr>
+			</c:forEach>
+		</tbody>
+	</table>
+
+</div>
+
+
+<div>
+
+
 
 <h1>Listado Cursos</h1>
 	<p>${mensaje}</p>
 
 	<p>${cursos}</p>
 
+<div>
+	<table class="tabla table table-striped">
+		<thead>
+			<tr>
+				<td>Id</td>
+				<td>Nombre</td>
+				<td>Identificador</td>
+				<td>Horas</td>
+				<td>Profesor</td>
+				<td>Operaciones</td>
+			</tr>
+		</thead>
+		<tbody>
+			<c:forEach items="${cursos}" var="c">
+				<tr>
+					<td>${c.id}</td>
+					<td>${c.nombre}</td>
+					<td>${c.identificador};</td>
+					<td>${c.horas}</td>
+					<td>${c.profesor.nombre},${c.profesor.apellidos}</td>
+					<td><a href="cursos?id=${c.id}" class="mr-4"> <i
+							class="far fa-edit fa-2x" title="Editar curso"></i></a> <a
+						href="cursoDel?id=${c.id}" onclick="confirmar('${c.nombre}')"><i
+							class="fas fa-trash fa-2x" title="Eliminar curso"></i></a></td>
+				</tr>
+			</c:forEach>
+		</tbody>
+	</table>
+
+</div>
+
+
+<div>
 
 
 <h1> crear nuevos cursos</h1>
 
-<h1> Hola, Alumno!!! </h1>
-<h3>${usuario_sesion}</h3>
-<p>${cursos}</p>
+
 
 
 <%@include file="../includes/pie.jsp"%>

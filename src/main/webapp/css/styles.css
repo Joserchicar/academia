@@ -46,18 +46,55 @@ td {
 }
 
 
-.row-card {
-	display: flex;
-	flex-wrap: wrap;
+
+
+a:hover{
+    color: var(--colorEnfasis);
 }
 
-.row-card .card {
-	width: 24%;
-	margin-right: 0.5%;
-	margin-bottom: 0.5%;
-	box-sizing: content-box;
+.icono{
+    width: 20px;
+    height: 20px;
+    margin: 5px;
+    background-size: cover;
+    cursor: pointer;
 }
 
-.row-card .card img {
-	height: 10em;
+.instagram{
+    background-image: url("../img/instagram.svg");
+}
+
+.facebook{
+    background-image: url("../img/facebook.svg");
+}
+
+.twitter{
+    background-image: url("../img/twitter.svg");
+}
+
+eader{
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--colorOscuro);
+    color: var(--colorBlanco);
+}
+
+#header_title{
+    display: flex;
+}
+
+#header_img{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#header_img img{
+    margin-right: 20px;
+}
+
+h1{
+    font-size: 50px;
 }

@@ -24,7 +24,7 @@
 	<h1>Listado Cursos</h1>
 	<p>${mensaje}</p>
 
-	
+	<p>${cursos}</p>
 
 </div>
 

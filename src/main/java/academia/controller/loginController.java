@@ -81,7 +81,7 @@ public class loginController extends HttpServlet {
 			request.getRequestDispatcher("privado/profesor.jsp").forward(request, response);
 			//response.sendRedirect(request.getContextPath()+"/privado/profesor");
 			
-		}else {
+		}else  {
 			
 			request.getSession().setAttribute("usuario_sesion", usuario);
 			request.getRequestDispatcher("privado/alumno.jsp").forward(request, response);

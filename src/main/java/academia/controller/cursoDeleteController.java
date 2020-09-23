@@ -28,9 +28,7 @@ public class cursoDeleteController extends HttpServlet {
 	 *      response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response, int idCurso) throws Throwable {
-		
-		
-		
+	
 		
 		// recoge parametro
 		String parametroId = request.getParameter("id");
@@ -75,7 +73,7 @@ public class cursoDeleteController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+		doGet(request, response);
 		
 	}
 }
