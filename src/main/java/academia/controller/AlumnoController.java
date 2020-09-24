@@ -31,8 +31,12 @@ public class AlumnoController extends HttpServlet {
 		ArrayList<Curso> cursos = new ArrayList<Curso>();
 		CursoDAOImpl dao = CursoDAOImpl.getInstance();
 		Usuario alumno =  (Usuario)request.getSession().getAttribute("usuario_sesion");
-	
+	try {
 		cursos = dao.listar_por_alumno(alumno.getId());
+	} catch (Exception e) {
+		e.printStackTrace();
+	}
+		
 		
 		request.setAttribute("cursos", cursos);
 		request.getRequestDispatcher("/privado/alumno.jsp").forward(request, response);
@@ -59,6 +63,8 @@ public class AlumnoController extends HttpServlet {
 			String identificador = request.getParameter("identificador");
 			String horasParametro = request.getParameter("horas");
 			 String profesorId = request.getParameter("idProfesor");
+			 
+			 
 
 			// int id = Integer.parseInt(idParametro);
 			int horas = Integer.parseInt(horasParametro);
@@ -73,10 +79,11 @@ public class AlumnoController extends HttpServlet {
 			curso.setNombre(nombre);
 			curso.setIdentificador(identificador);
 			curso.setHoras(horas);
-			curso.setProfesor();
+			
+			Usuario profesor =new Usuario();
 			Usuario alumno = (Usuario) request.getSession().getAttribute("usuario_sesion");
-			// profesor.setId(idProfesor);
-
+			//profesor.setId(idProfesor);
+			curso.setProfesor(profesor);
 			curso.setAlumno(alumno);
 
 			dao.insert(curso, alumno.getId());

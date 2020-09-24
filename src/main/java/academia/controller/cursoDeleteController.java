@@ -52,7 +52,7 @@ public class cursoDeleteController extends HttpServlet {
 			{
 			}
 			// encvio datos a la vista
-			ArrayList<Curso> cursos = new ArrayList();
+			ArrayList<Curso> cursos = new ArrayList<Curso>();
 			cursos = dao.listar_por_usuario(idProfesor);
 
 			request.setAttribute("cursos", cursos);

@@ -26,30 +26,6 @@ public class Curso {
 
 
 
-	public Usuario getAlumno() {
-		return alumno;
-	}
-
-
-
-	public void setAlumno(Usuario alumno) {
-		this.alumno = alumno;
-	}
-
-
-
-	public int getNumAlumnos() {
-		return numAlumnos;
-	}
-
-
-
-	public void setNumAlumnos(int numAlumnos) {
-		this.numAlumnos = numAlumnos;
-	}
-
-
-
 	public int getId() {
 		return id;
 	}
@@ -110,6 +86,30 @@ public class Curso {
 
 
 
+	public Usuario getAlumno() {
+		return alumno;
+	}
+
+
+
+	public void setAlumno(Usuario alumno) {
+		this.alumno = alumno;
+	}
+
+
+
+	public int getNumAlumnos() {
+		return numAlumnos;
+	}
+
+
+
+	public void setNumAlumnos(int numAlumnos) {
+		this.numAlumnos = numAlumnos;
+	}
+
+
+
 	@Override
 	public String toString() {
 		return "Curso [id=" + id + ", nombre=" + nombre + ", identificador=" + identificador + ", horas=" + horas
@@ -117,6 +117,8 @@ public class Curso {
 	}
 
 
+
+	
 
 
 

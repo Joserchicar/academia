@@ -26,7 +26,7 @@
 <!-- Custom CSS -->
 <link rel="stylesheet" href="css/styles.css">
 
-title> ${param.title} | Academia
+<title> ${param.title} | Academia
 </title>
 
 </head>

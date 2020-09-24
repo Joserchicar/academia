@@ -200,7 +200,7 @@ public class CursoDAOImpl implements CursoDAO {
 
 	private Curso getById(int idCurso) throws SQLException, Throwable, NamingException {
 		Curso curso = new Curso();
-
+		ArrayList<Curso> cursos = new ArrayList<Curso>();
 		try (Connection conexion = ConnectionManager.getConnection();
 				PreparedStatement pst = conexion.prepareStatement(SQL_GET_BY_ID);
 
@@ -214,12 +214,13 @@ public class CursoDAOImpl implements CursoDAO {
 
 			while (rs.next()) {
 
-				Curso c = new Curso();
+			/*	Curso c = new Curso();
 				c.setId(rs.getInt("curso_id"));
 				c.setNombre(rs.getString("curso_nombre"));
 				c.setIdentificador(rs.getString("identificador"));
 				c.setHoras(rs.getInt("horas"));
-
+				c.setNumAlumnos(rs.getInt("num_alumnos"));
+				
 				Usuario p = new Usuario();
 				p.setId(rs.getInt("profesor_id"));
 				p.setNombre(rs.getString("profesor_nombre"));
@@ -227,8 +228,9 @@ public class CursoDAOImpl implements CursoDAO {
 				p.setRol(rs.getInt("rol"));
 
 				c.setProfesor(p);
-				curso = new Curso();
-
+				curso = new Curso();*/
+				
+				cursos.add(mapper(rs));
 			}
 
 		}

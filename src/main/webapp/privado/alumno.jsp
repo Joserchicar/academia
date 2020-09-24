@@ -13,6 +13,9 @@
 
 <h1> Hola, Alumno!!! </h1>
 <h4>${usuario_sesion}</h4>
+<p>${mensaje}</p>
+
+<p>${cursos}</p>
 
 <h1> mostrar cursos del alumno logeado</h1>
 

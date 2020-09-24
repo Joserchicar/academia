@@ -28,10 +28,12 @@
                         <h3>Datos Curso</h3>
                         <table>
                             <thead>
+                            <tr>
                                 <th>Curso</th>
                                 <th>Identificador</th>
                                 <th>Horas</th>
                                 <th>Profesor</th>
+                                </tr>
                             </thead>
                             <tbody>
                                 <tr>
@@ -51,10 +53,11 @@
                                 <form id="form_reseina" action="insertarReseina.jsp" method="post">
                                     <input type="text" name="idCurso" value="<%=resultSet.getInt("id")%>" class="hide">
                                     <select name="idAlumno">
-                                        <option value="1">Elier</value>
-                                        <option value="2">Beatriz</value>
-                                        <option value="3">Asier</value>
-                                        <option value="4">Lander</value>
+                                        <option value="1">Elier</option>
+                                        <option value="2">Beatriz</option>
+                                        <option value="3">Asier</option>
+                                        <option value="4">Lander</option>
+                                       
                                     </select>
                                     <textarea name="reseina" required></textarea>
                                     <input type="submit" value="Insertar Reseña">

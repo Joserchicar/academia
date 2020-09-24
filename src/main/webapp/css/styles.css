@@ -98,3 +98,73 @@ eader{
 h1{
     font-size: 50px;
 }
+
+footer{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    background-color: var(--colorNegro);
+    color: var(--colorBlanco);
+}
+
+#footer_social{
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--colorOscuro);
+}
+
+#footer_social_buttons{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+footer .col_2{
+   width: calc(100% - 40px);
+   padding: 20px;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   text-align: center;
+}
+
+.footer_menu h3{
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    font-size: 19px;
+    border-bottom: 2px solid var(--colorPrimario);
+}
+
+.footer_menu ul{
+    list-style: none;
+}
+
+.footer_menu ul li{
+    margin-bottom: 10px;
+}
+
+#footer_contacto{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#movil_version{
+    width: 100%;
+    padding: 10px 20px;
+    text-align: center;
+    background-color: var(--colorNegroOscuro);
+}
+
+#copyright{
+    width: 100%;
+    margin-bottom: 0;
+    padding: 10px 20px;
+    text-align: center;
+    background-color: var(--colorNegroOscuro);
+}
+

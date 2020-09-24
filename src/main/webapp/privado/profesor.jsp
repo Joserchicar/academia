@@ -24,7 +24,6 @@
 	<h1>Listado Cursos</h1>
 	<p>${mensaje}</p>
 
-	<p>${cursos}</p>
 
 </div>
 
@@ -44,6 +43,7 @@
 				<td>Identificador</td>
 				<td>Horas</td>
 				<td>Profesor</td>
+				<td> num. Alumnos</td>
 				<td>Operaciones</td>
 			</tr>
 		</thead>
@@ -55,6 +55,8 @@
 					<td>${c.identificador};</td>
 					<td>${c.horas}</td>
 					<td>${c.profesor.nombre},${c.profesor.apellidos}</td>
+					<td>${c.numAlumnos}</td>
+					
 					<td><a href="cursos?id=${c.id}" class="mr-4"> <i
 							class="far fa-edit fa-2x" title="Editar curso"></i></a> <a
 						href="cursoDel?id=${c.id}" onclick="confirmar('${c.nombre}')"><i
